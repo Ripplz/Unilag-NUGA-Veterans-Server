@@ -1,0 +1,10 @@
+{
+  "name": "unilag-nuga-veterans-server",
+  "version": 2,
+  "builds": [{ "src": "index.js", "use": "@now/node-server" }],
+  "routes": [
+    { "src": "/add_veteran", "dest": "/index.js" },
+    { "src": "/get_veterans", "dest": "/index.js" },
+    { "src": "/get_veteran", "dest": "/index.js" }
+  ]
+}

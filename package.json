@@ -1,0 +1,18 @@
+{
+  "name": "unilag-nuga-veterans-server",
+  "version": "1.0.0",
+  "description": "Server application for the University of Lagos, NUGA Veterans Web Portal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Stephen Ojo",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongodb": "^3.2.3",
+    "nodemon": "^1.18.11"
+  }
+}
