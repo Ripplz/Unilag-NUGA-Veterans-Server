@@ -5,6 +5,11 @@
   "routes": [
     { "src": "/add_veteran", "dest": "/index.js" },
     { "src": "/get_veterans", "dest": "/index.js" },
-    { "src": "/get_veteran", "dest": "/index.js" }
+    { "src": "/get_veteran", "dest": "/index.js" },
+    { "src": "/submit_feedback", "dest": "/index.js" },
+    { "src": "/update_veteran", "dest": "/index.js" },
+    { "src": "/delete_veteran", "dest": "/index.js" },
+    { "src": "/get_veteran_by_id", "dest": "/index.js" },
+    { "src": "/get_veteran_id", "dest": "/index.js" }
   ]
 }
