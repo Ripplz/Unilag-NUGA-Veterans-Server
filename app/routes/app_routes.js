@@ -7,6 +7,8 @@ APP POST
     const newVeteran = {
       lastName: req.body.lastName,
       otherNames: req.body.otherNames,
+      email: req.body.email,
+      phone: req.body.phone,
       nugaYears: req.body.nugaYears,
       jerseyPositions: req.body.jerseyPositions,
       password: req.body.password,
@@ -40,14 +42,32 @@ BEGINNING OF APP GET
       });
   });
 
-  app.get("/get_veteran", (req, res) => {
-    const password = req.query.password;
+  app.get("/get_veteran_by_id", (req, res) => {
+    const vetId = req.query.vetId;
     db.collection("veterans")
-      .find({ password: password })
+      .find({ _id: vetId })
+      .limit(1)
       .toArray((err, item) => {
         if (err) {
           console.log(err);
-          res.sendStatus(401);
+          res.sendStatus(404);
+        } else {
+          console.log(item);
+          res.send(item);
+        }
+      });
+  });
+
+  app.get("/get_veteran", (req, res) => {
+    const email = req.query.email;
+    const password = req.query.password;
+    db.collection("veterans")
+      .find({ email: email, password: password })
+      .limit(1)
+      .toArray((err, item) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(404);
         } else {
           console.log(item);
           res.send(item);
