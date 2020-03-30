@@ -42,6 +42,23 @@ APP POST
     });
   });
 
+  app.post("/submit_contact_message", (req, res) => {
+    const newContactMessage = {
+      message: req.body.message,
+      name: req.body.name,
+      phone: req.body.phone,
+      email: req.body.email
+    };
+
+    db.collection("contact").insertOne(newContactMessage, (err, result) => {
+      if (err) {
+        res.send({ error: "An error has occurred" });
+      } else {
+        res.send(result.ops[0]);
+      }
+    });
+  });
+
   app.post("/update_veteran", (req, res) => {
     const updatedVeteran = {
       _id: ObjectID(req.body._id),
