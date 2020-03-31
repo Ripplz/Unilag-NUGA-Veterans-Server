@@ -139,6 +139,21 @@ BEGINNING OF APP GET
       });
   });
 
+  app.get("/search_veteran", (req, res) => {
+    const searchQuery = req.query.query;
+    db.collection("veterans")
+      .find({ nugaYears: searchQuery })
+      .toArray((err, item) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(404);
+        } else {
+          console.log(item);
+          res.send(item);
+        }
+      });
+  });
+
   app.get("/get_veteran", (req, res) => {
     const email = req.query.email;
     const password = req.query.password;
