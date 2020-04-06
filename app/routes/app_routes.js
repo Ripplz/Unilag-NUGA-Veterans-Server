@@ -185,7 +185,7 @@ BEGINNING OF APP GET
     const password = req.query.password;
     db.collection("veterans")
       .find({ email })
-      .project({ _id: 1 })
+      .project({ _id: 1, password: 1, passwordHint: 1 })
       .limit(1)
       .toArray((err, item) => {
         if (err) {
