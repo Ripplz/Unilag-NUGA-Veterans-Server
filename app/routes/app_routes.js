@@ -14,6 +14,7 @@ APP POST
       nugaYears: req.body.nugaYears,
       jerseyPositions: req.body.jerseyPositions,
       password: req.body.password,
+      passwordHint: req.body.passwordHint,
       recentPhoto: req.body.recentPhoto,
       throwbackPhotos: req.body.throwbackPhotos
     };
@@ -69,6 +70,7 @@ APP POST
       nugaYears: req.body.nugaYears,
       jerseyPositions: req.body.jerseyPositions,
       password: req.body.password,
+      passwordHint: req.body.passwordHint,
       recentPhoto: req.body.recentPhoto,
       throwbackPhotos: req.body.throwbackPhotos
     };
@@ -158,15 +160,22 @@ BEGINNING OF APP GET
     const email = req.query.email;
     const password = req.query.password;
     db.collection("veterans")
-      .find({ email: email, password: password })
+      .find({ email })
       .limit(1)
       .toArray((err, item) => {
         if (err) {
-          console.log(err);
-          res.sendStatus(404);
+          res.sendStatus(500);
         } else {
-          console.log(item);
-          res.send(item);
+          if (item.length <= 0) {
+            res.sendStatus(204);
+          } else {
+            const vet = item[0];
+            if (vet.password === password) {
+              res.status(200).send(item);
+            } else {
+              res.status(206).send(vet.passwordHint);
+            }
+          }
         }
       });
   });
@@ -175,16 +184,23 @@ BEGINNING OF APP GET
     const email = req.query.email;
     const password = req.query.password;
     db.collection("veterans")
-      .find({ email: email, password: password })
+      .find({ email })
       .project({ _id: 1 })
       .limit(1)
       .toArray((err, item) => {
         if (err) {
-          console.log(err);
-          res.sendStatus(404);
+          res.sendStatus(500);
         } else {
-          console.log(item);
-          res.send(item);
+          if (item.length <= 0) {
+            res.sendStatus(204);
+          } else {
+            const vet = item[0];
+            if (vet.password === password) {
+              res.status(200).send(item);
+            } else {
+              res.status(206).send(vet.passwordHint);
+            }
+          }
         }
       });
   });
