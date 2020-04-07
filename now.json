@@ -12,6 +12,7 @@
     { "src": "/get_veteran_by_id", "dest": "/index.js" },
     { "src": "/get_veteran_id", "dest": "/index.js" },
     { "src": "/submit_contact", "dest": "/index.js" },
-    { "src": "/search_veteran", "dest": "/index.js" }
+    { "src": "/search_veteran", "dest": "/index.js" },
+    { "src": "/get_all_contact", "dest": "/index.js" }
   ]
 }

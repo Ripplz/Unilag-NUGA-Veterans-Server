@@ -48,7 +48,8 @@ APP POST
       message: req.body.message,
       name: req.body.name,
       phone: req.body.phone,
-      email: req.body.email
+      email: req.body.email,
+      timestamp: req.body.timestamp
     };
 
     db.collection("contact").insertOne(newContactMessage, (err, result) => {
@@ -118,6 +119,15 @@ BEGINNING OF APP GET
 
   app.get("/get_veterans", (req, res) => {
     db.collection("veterans")
+      .find({})
+      .toArray((err, item) => {
+        if (err) console.log(err);
+        res.send(item);
+      });
+  });
+
+  app.get("/get_all_contact", (req, res) => {
+    db.collection("contact")
       .find({})
       .toArray((err, item) => {
         if (err) console.log(err);
